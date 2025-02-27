@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './app/LoginPage';
 import reportWebVitals from './reportWebVitals';
+import RegistroUsuario from './app/RegisterUser';
 
 import {//Esta linea haat la 7 no estaba
   createBrowserRouter,
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <App/>,
   }, 
+  {
+    path:"/RegisterUser",
+    element:<RegistroUsuario/>
+  }
  
 ]);//Se cambio e. componente que se quiere llamar
 
