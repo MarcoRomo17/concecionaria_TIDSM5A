@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 // Clave secreta para JWT (debería ir en variables de entorno)
-const JWT_SECRET = "tu_secreto_super_seguro";
+const JWT_SECRET = "pocoyo";
 
 // Registrar un usuario
 export const registerUser = async (req: Request, res: Response) => {

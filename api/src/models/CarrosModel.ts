@@ -16,7 +16,7 @@ const CarroEsquema= new Schema<ICarro>({
         required:true
     },
     year:{
-        type:String,
+        type:Number,
         required:true
     },
     detalles:{
