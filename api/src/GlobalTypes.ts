@@ -5,7 +5,7 @@ export interface ICarro{
     nombre:String,
     precio: Number,
     URLimg: String,
-    year: String,
+    year: Number,
     detalles:String
 }
 
