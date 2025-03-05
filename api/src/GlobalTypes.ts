@@ -9,4 +9,11 @@ export interface ICarro{
     detalles:String
 }
 
+export interface IUser {
+    name: string;
+    lastName: string;
+    email: string;
+    password: string;
+}
+
 //CREE LA API Y LA PRIMERA INTERFAZ
