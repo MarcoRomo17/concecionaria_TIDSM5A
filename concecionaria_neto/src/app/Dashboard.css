@@ -33,5 +33,13 @@
     background-color: rgb(28, 110, 218);
     z-index: 1000;
     padding: 10px;
+    
+  }
+  button{
+    background-color: #ee0000;
+    color: white;              
+    border: none;              
+    border-radius: 5px;      
+    padding: 5px 0.1px; 
   }
     

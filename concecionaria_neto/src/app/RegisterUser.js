@@ -27,7 +27,7 @@ const RegistroUsuario = () => {
       <Container className="mt-5">
         <Card className="registro-card">
           <Card.Body>
-            <Card.Title className="text-center">Registro de Usuario</Card.Title>
+            <Card.Title className="Tittle">Registro de Usuario</Card.Title>
             <Form onSubmit={onSubmit}>
               <Form.Group className="mb-3">
                 <Form.Label>Nombre</Form.Label>

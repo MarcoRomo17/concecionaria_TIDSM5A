@@ -74,6 +74,7 @@ export default function Dashboard() {
       <Container>
         <h2 className="text-center mt-4">Bienvenido a la Concesionaria Neto</h2>
         <Row className="mb-4 justify-content-center sticky-search-bar">
+     
           <Col md={6}>
             <Form.Control
               type="text"
@@ -111,6 +112,7 @@ export default function Dashboard() {
               </Col>
             ))}
         </Row>
+        <button >Salir</button>
       </Container>
     </div>
   );
