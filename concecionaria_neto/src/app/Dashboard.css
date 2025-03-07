@@ -1,0 +1,37 @@
+.dropdown {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .dropdown-toggle {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  .dropdown-toggle:hover {
+    background-color: #0056b3;
+  }
+  
+  .car-card {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .car-card:hover {
+    transform: scale(1.05);
+  }
+  .dropdown-menu {
+    z-index: 1050; 
+    position: absolute !important;
+  }
+
+  .sticky-search-bar {
+    position: sticky;
+    top: 0;
+    background-color: rgb(28, 110, 218);
+    z-index: 1000;
+    padding: 10px;
+  }
+    

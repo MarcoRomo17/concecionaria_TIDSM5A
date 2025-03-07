@@ -4,6 +4,7 @@ import './index.css';
 import App from './app/LoginPage';
 import reportWebVitals from './reportWebVitals';
 import RegistroUsuario from './app/RegisterUser';
+import Dashboard from "./app/Dashboard";
 
 import {//Esta linea haat la 7 no estaba
   createBrowserRouter,
@@ -18,7 +19,12 @@ const router = createBrowserRouter([
   {
     path:"/RegisterUser",
     element:<RegistroUsuario/>
-  }
+  },
+  {
+    path: "/dashboard",  // Agregar la ruta del Dashboard
+    element: <Dashboard />,
+  },
+
  
 ]);//Se cambio e. componente que se quiere llamar
 

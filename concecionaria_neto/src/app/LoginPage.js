@@ -44,7 +44,7 @@ export default function LoginPage() {
           Iniciar Sesión
         </button>
 
-        <Link to="/register" className="register-link">
+        <Link to="/RegisterUser" className="register-link">
           ¿No tienes cuenta? Regístrate aquí
         </Link>
       </div>
