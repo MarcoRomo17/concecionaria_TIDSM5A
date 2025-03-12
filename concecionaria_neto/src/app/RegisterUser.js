@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { Button, Card, Container, Form } from "react-bootstrap";
 import './RegisterUser.css';
+import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 
 const RegistroUsuario = () => {
+   const navigate= useNavigate()
     const [usuario, setUsuario] = useState({
-      nombre: "",
+      name: "",
       email: "",
       password: "",
     });
@@ -16,26 +19,33 @@ const RegistroUsuario = () => {
         ...prevUsuario,
         [name]: value,
       }));
+
     };
   
-    const onSubmit = (e) => {
+    const onSubmit =async (e) => {
       e.preventDefault();
       console.log("Datos del usuario:", usuario);
+      try {
+        await axios.post("http://127.0.0.1:4010/user/register", usuario)
+        navigate('/')
+      } catch (error) {
+        console.log("Algo salio mal: ", error)
+      }
     };
   
     return (
       <Container className="mt-5">
         <Card className="registro-card">
           <Card.Body>
-            <Card.Title className="text-center">Registro de Usuario</Card.Title>
+            <Card.Title className="Tittle">Registro de Usuario</Card.Title>
             <Form onSubmit={onSubmit}>
               <Form.Group className="mb-3">
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Ingresa tu nombre"
-                  name="nombre"
-                  value={usuario.nombre}
+                  name="name"
+                  value={usuario.name}
                   onChange={onChangeInput}
                   required
                 />
