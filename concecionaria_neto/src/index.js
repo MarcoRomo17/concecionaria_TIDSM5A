@@ -10,6 +10,8 @@ import {//Esta linea haat la 7 no estaba
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import RegisterCar from './app/Registercar';
+import CarList from './app/CarList';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",  // Agregar la ruta del Dashboard
     element: <Dashboard />,
+  },
+  {
+    path: "/RegisterCar",  
+    element: <RegisterCar/>,
+  },
+  {
+    path: "/cars",  
+    element: <CarList/>,
   },
 
  

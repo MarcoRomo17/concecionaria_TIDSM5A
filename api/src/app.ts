@@ -30,4 +30,10 @@ app.get("/:id", obtenerUsuarioPorId)
 app.put("/:id", actualizarUsuario)
 app.delete("/:id", eliminarUsuario)
 
+app.post("/api/cars", registrarCarro);
+app.get("/api/cars", TraerTODOSCarros);
+app.put("/api/cars", actualizarCarro);
+app.delete("/api/cars", borrarCarro);
+
+
 export default app;
