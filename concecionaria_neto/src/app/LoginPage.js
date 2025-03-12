@@ -29,6 +29,7 @@ export default function LoginPage() {
       console.log("Algo salio mal,", error)
     }
 
+    
   };
 
   return (

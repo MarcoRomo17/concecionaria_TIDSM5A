@@ -69,6 +69,11 @@ export default function Dashboard() {
     }
   ];
 
+  const logout = () => {
+    localStorage.clear()
+    window.location.href = "/"
+}
+
   return (
     <div className="main_content">
       <Container>
