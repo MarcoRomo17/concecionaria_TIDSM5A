@@ -35,11 +35,12 @@
     padding: 10px;
     
   }
-  button{
+  .button-logout{
     background-color: #ee0000;
-    color: white;              
+    color: rgb(255, 255, 255);              
     border: none;              
     border-radius: 5px;      
-    padding: 5px 0.1px; 
+    padding: 5px; 
+    width: 200px;
   }
     
