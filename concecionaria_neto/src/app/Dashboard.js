@@ -76,19 +76,20 @@ export default function Dashboard() {
 
   return (
     <div className="main_content">
-      <Container>
+      <nav>
         <h2 className="text-center mt-4">Bienvenido a la Concesionaria Neto</h2>
         <Row className="mb-4 justify-content-center sticky-search-bar">
-     
           <Col md={6}>
             <Form.Control
               type="text"
               placeholder="Busca un carro"
               value={busqueda}
               onChange={(e) => setBusqueda(e.target.value)}
-            />
+            />  <button class="logout">Salir</button>
           </Col>
+       
         </Row>
+        
         <Row className="row-cols-1 row-cols-lg-3 g-4">
           {carros
             .filter((car) => car.nombre.toLowerCase().includes(busqueda.toLowerCase()))
@@ -117,8 +118,7 @@ export default function Dashboard() {
               </Col>
             ))}
         </Row>
-        <button >Salir</button>
-      </Container>
+      </nav>
     </div>
   );
 }
