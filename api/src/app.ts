@@ -2,7 +2,7 @@ import  { Application, Response, Request } from "express";
 import cors from "cors";
 import express from "express"
 import { actualizarCarro, borrarCarro, registrarCarro, TraerTODOSCarros } from "./controllers/CarrosController";
-import {registrarUsuario, loginUsuario, obtenerTodosUsuarios, obtenerUsuarioPorId, actualizarUsuario, eliminarUsuario} from "./controllers/userController"
+import {registrarUsuario, loginUsuario, obtenerTodosUsuarios, obtenerUsuarioPorId, actualizarUsuario, eliminarUsuario, login2} from "./controllers/userController"
 
 
 const app:Application = express();
@@ -23,11 +23,16 @@ app.get("/carro/getAll", TraerTODOSCarros)
 app.post("/carro/update",actualizarCarro)
 app.delete("/carro/delete", borrarCarro)
 
-app.post("/register", registrarUsuario)
-app.post("/login", loginUsuario)
+app.post("/user/register", registrarUsuario)
+app.post("/user/login", loginUsuario)
 app.get("/", obtenerTodosUsuarios)
 app.get("/:id", obtenerUsuarioPorId)
 app.put("/:id", actualizarUsuario)
 app.delete("/:id", eliminarUsuario)
+
+app.post("/user/login2", login2)
+
+
+
 
 export default app;
