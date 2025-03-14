@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Importar useNavigate
 import axios from "axios";
 import './RegisterCar.css';
 
 const RegisterCar = () => {
+  const navigate = useNavigate(); // Hook para navegar entre rutas
   const [carro, setCarro] = useState({
     nombre: "",
     precio: "",
@@ -81,6 +83,9 @@ const RegisterCar = () => {
             required
           />
           <button type="submit">Registrar Carro</button>
+          <button type="button" className="back-button" onClick={() => navigate("/dashboard")}>
+            Regresar al Dashboard
+          </button>
         </form>
       </div>
     </div>
