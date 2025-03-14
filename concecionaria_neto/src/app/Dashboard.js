@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Dashboard.css"; 
 import axios from "axios";
 
-
+import Swal from 'sweetalert2'
 
 
 export default function Dashboard() {
@@ -28,6 +28,11 @@ export default function Dashboard() {
     try {
       await axios.delete("http://127.0.0.1:4010/carro/delete", {
         data: { carroID: id }
+      });
+      Swal.fire({
+        
+        text: "Eliminado correctamente",
+        icon: "success"
       });
       setCars(cars.filter(car => car._id !== id));
     } catch (error) {
