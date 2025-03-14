@@ -7,7 +7,7 @@ export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password1, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const navigate= useNavigate()
 
   const handleLogin = async () => {
 
@@ -25,7 +25,10 @@ export default function LoginPage() {
       localStorage.id=JSON.stringify(UsuarioActualmenteLogeado._id) //Guardo su ID
       localStorage.nombre=JSON.stringify(UsuarioActualmenteLogeado.nombre)
       localStorage.logined=true
-      navigate("/")
+      if(localStorage.logined){
+        console.log("SE supone navego")
+        navigate("/dashboard")
+      }
     } catch (error) {
       console.log("Algo salio mal,", error)
     }
