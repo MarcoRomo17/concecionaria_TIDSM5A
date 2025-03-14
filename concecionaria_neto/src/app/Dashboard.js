@@ -43,7 +43,11 @@ const create = () => {
 }
 
 
-
+const filteredCars = cars.filter((car) =>
+  car.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
+  car.year.toString().includes(busqueda) ||
+  car.detalles.toLowerCase().includes(busqueda.toLowerCase())
+);
 
 
   const carros = [
@@ -119,7 +123,7 @@ const create = () => {
           <Col md={6}>
             <Form.Control
               type="text"
-              placeholder="Busca un carro"
+              placeholder="Busca un carro por nombre, año o detalles"
               value={busqueda}
               onChange={(e) => setBusqueda(e.target.value)}
             />
@@ -127,9 +131,9 @@ const create = () => {
           <Button className="Buttonlogout" onClick={logout}>Salir</Button>
         </Row>
         <Row className="row-cols-1 row-cols-lg-3 g-4">
-            {
-              cars.map((car)=>(
-                <Col key={car.id}>
+          {filteredCars.length > 0 ? (
+            filteredCars.map((car) => (
+              <Col key={car.id}>
                 <Card className="car-card shadow-sm">
                   <Card.Img variant="top" src={car.URLimg} className="car-image" />
                   <Card.Body>
@@ -151,11 +155,13 @@ const create = () => {
                   </Card.Body>
                 </Card>
               </Col>
-              ))
-            }
+            ))
+          ) : (
+            <p className="text-center">No se encontraron resultados</p>
+          )}
         </Row>
       </nav>
-      <Button className="ButtonCreate" onClick={create}>Crear Card</Button>
+      <Button className="ButtonCreate" onClick={create}>Crear Carro</Button>
     </div>
   );
 }
