@@ -25,6 +25,7 @@ export default function LoginPage() {
       localStorage.id=JSON.stringify(UsuarioActualmenteLogeado._id) //Guardo su ID
       localStorage.nombre=JSON.stringify(UsuarioActualmenteLogeado.nombre)
       localStorage.logined=true
+      navigate("/")
     } catch (error) {
       console.log("Algo salio mal,", error)
     }

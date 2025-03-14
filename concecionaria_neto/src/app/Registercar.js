@@ -22,7 +22,7 @@ const RegisterCar = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/cars", carro);
+      const response = await axios.post("http://127.0.0.1:4010/api/cars", carro);
       alert(response.data.msg);
       setCarro({
         nombre: "",

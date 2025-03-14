@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
 
 export default function Dashboard() {
-  const [cars, setCars] = useState();
+  const [cars, setCars] = useState([]);
   useEffect(()=>{
     getAllCars()
   },[])
@@ -105,34 +105,32 @@ export default function Dashboard() {
         </Row>
         
         <Row className="row-cols-1 row-cols-lg-3 g-4">
-              {
-                console.log(cars)}
-                {cars.map((car) => (
-           
-                  <Col key={car.id}>
-                    <Card className="car-card shadow-sm">
-                      <Card.Img variant="top" src={car.URLimg} className="car-image" />
-                      <Card.Body>
-                        <Card.Title>
-                          {car.nombre} ({car.year})
-                        </Card.Title>
-                        <Card.Text>{car.detalles}</Card.Text>
-                        <Card.Text>
-                          <strong>{car.precio}</strong>
-                        </Card.Text>
-                        <Dropdown onToggle={() => setDropdownOpen(dropdownOpen === car.id ? null : car.id)}>
-                          <Dropdown.Toggle variant="primary">
-                            Detalles
-                          </Dropdown.Toggle>
-                          <Dropdown.Menu className="p-3">
-                            <Dropdown.ItemText>{car.detalles}</Dropdown.ItemText>
-                          </Dropdown.Menu>
-                        </Dropdown>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                ))
-              }
+            {
+              cars.map((car)=>(
+                <Col key={car.id}>
+                <Card className="car-card shadow-sm">
+                  <Card.Img variant="top" src={car.URLimg} className="car-image" />
+                  <Card.Body>
+                    <Card.Title>
+                      {car.nombre} ({car.year})
+                    </Card.Title>
+                    <Card.Text>{car.detalles}</Card.Text>
+                    <Card.Text>
+                      <strong>{car.precio}</strong>
+                    </Card.Text>
+                    <Dropdown onToggle={() => setDropdownOpen(dropdownOpen === car.id ? null : car.id)}>
+                      <Dropdown.Toggle variant="primary">
+                        Detalles
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu className="p-3">
+                        <Dropdown.ItemText>{car.detalles}</Dropdown.ItemText>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </Card.Body>
+                </Card>
+              </Col>
+              ))
+            }
         </Row>
       </nav>
     </div>
