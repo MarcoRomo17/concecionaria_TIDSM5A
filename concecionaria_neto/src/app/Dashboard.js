@@ -24,6 +24,16 @@ export default function Dashboard() {
    setCars(allCars)
   }
 
+  const deleteCar = async (id) => {
+    try {
+      await axios.delete("http://127.0.0.1:4010/carro/delete", {
+        data: { carroID: id }
+      });
+      setCars(cars.filter(car => car._id !== id));
+    } catch (error) {
+      console.error("Error deleting car:", error);
+    }
+  };
 
 
 
@@ -152,6 +162,9 @@ const filteredCars = cars.filter((car) =>
                         <Dropdown.ItemText>{car.detalles}</Dropdown.ItemText>
                       </Dropdown.Menu>
                     </Dropdown>
+                    <Button variant="danger" className="mt-2" onClick={() => deleteCar(car._id)}>
+                      Eliminar
+                    </Button>
                   </Card.Body>
                 </Card>
               </Col>
