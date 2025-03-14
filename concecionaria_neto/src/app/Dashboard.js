@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Button, Card, Form, Dropdown } from "react-bootstrap";
-import "./Dashboard.css";
+import { Row, Col,Button, Card, Form, Dropdown } from "react-bootstrap";
+import "./Dashboard.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
+
+
+
 
 export default function Dashboard() {
   const [cars, setCars] = useState([]);
@@ -13,12 +16,34 @@ export default function Dashboard() {
   const [dropdownOpen, setDropdownOpen] = useState(null);
 
 
+
   const getAllCars= async()=>{
     const vehicles= await axios.get("http://127.0.0.1:4010/carro/getAll")
     const allCars= vehicles.data.allCars
    // console.log(allCars)
    setCars(allCars)
   }
+
+
+
+
+
+  const logout = () => {
+    localStorage.clear()
+    window.location.href = "/"
+}
+
+
+
+
+
+const create = () => {
+  localStorage.clear()
+  window.location.href = "/RegisterCar"
+}
+
+
+
 
 
   const carros = [
@@ -83,10 +108,8 @@ export default function Dashboard() {
     }
   ];
 
-  const logout = () => {
-    localStorage.clear()
-    window.location.href = "/"
-}
+
+
 
   return (
     <div className="main_content">
@@ -99,11 +122,10 @@ export default function Dashboard() {
               placeholder="Busca un carro"
               value={busqueda}
               onChange={(e) => setBusqueda(e.target.value)}
-            />  <button class="logout">Salir</button>
+            />
           </Col>
-       
+          <Button className="Buttonlogout" onClick={logout}>Salir</Button>
         </Row>
-        
         <Row className="row-cols-1 row-cols-lg-3 g-4">
             {
               cars.map((car)=>(
@@ -133,6 +155,7 @@ export default function Dashboard() {
             }
         </Row>
       </nav>
+      <Button className="ButtonCreate" onClick={create}>Crear Card</Button>
     </div>
   );
 }

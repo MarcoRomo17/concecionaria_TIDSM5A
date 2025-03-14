@@ -35,12 +35,27 @@
     padding: 10px;
     
   }
-  .button-logout{
-    background-color: #ee0000;
+
+
+
+  .Buttonlogout{
+    background-color: #ff0000;
     color: rgb(255, 255, 255);              
     border: none;              
     border-radius: 5px;      
     padding: 5px; 
-    width: 200px;
+    width: 100px;
+    display: flex;
   }
-    
+
+  .ButtonCreate{
+    background-color: #02cc0c;
+    color: rgb(255, 255, 255);              
+    border: none;              
+    border-radius: 5px;      
+    padding: 20px; 
+    width: 200px;
+    display: flex;
+  }
+  
+  
