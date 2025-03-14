@@ -2,12 +2,14 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import axios from "axios";
+import Swal from 'sweetalert2'
+
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password1, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const navigate= useNavigate()
 
   const handleLogin = async () => {
 
@@ -19,16 +21,40 @@ export default function LoginPage() {
       console.log("estoy mandano", data)
       const res= await axios.post("http://127.0.0.1:4010/user/login2",data)
       console.log(res.data)
-      const UsuarioActualmenteLogeado= res.data.UsuarioLogeado
+  
+        const UsuarioActualmenteLogeado= res.data.UsuarioLogeado
         //jalamos lo de la respuesta y lo guardamos
       localStorage.usuario=JSON.stringify(UsuarioActualmenteLogeado) //Guardo el usuario
       localStorage.id=JSON.stringify(UsuarioActualmenteLogeado._id) //Guardo su ID
       localStorage.nombre=JSON.stringify(UsuarioActualmenteLogeado.nombre)
       localStorage.logined=true
+
+      let timerInterval;
+Swal.fire({
+  title: "Sesion iniciado con exito!",
+  html: "Bienvenido<b></b> .",
+  timer: 1000,
+  willClose: () => {
+    clearInterval(timerInterval);
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    console.log("I was closed by the timer");
+  }
+});
+
+      if(localStorage.logined){
+        console.log("SE supone navego")
+        navigate("/dashboard")
+      }
+      
+
     } catch (error) {
       console.log("Algo salio mal,", error)
     }
 
+    
   };
 
   return (

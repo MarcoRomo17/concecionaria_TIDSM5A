@@ -38,7 +38,9 @@ export const registrarCarro= async (req:Request, res: Response): Promise<any>=>{
 export const TraerTODOSCarros= async (req:Request, res: Response): Promise<any>=>{
     try {
         const allCars= await CarroModel.find();
+        console.log(allCars)
         return res.status(200).json({msg:"Todo bien, encontre", allCars})
+
 
     } catch (error) {
         console.log("Error al traer los carros")

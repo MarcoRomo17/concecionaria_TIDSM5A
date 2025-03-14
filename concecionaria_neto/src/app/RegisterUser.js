@@ -73,8 +73,8 @@ const RegistroUsuario = () => {
                 />
               </Form.Group>
               <Button className="Registro" type="submit" variant="primary">
-                Registrar
-              </Button>
+              Registrarse
+            </Button>
             </Form>
           </Card.Body>
         </Card>

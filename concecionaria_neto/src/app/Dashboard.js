@@ -1,21 +1,79 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Button, Card, Form, Dropdown } from "react-bootstrap";
-import "./Dashboard.css";
+import React, { useEffect, useState } from "react";
+import { Row, Col,Button, Card, Form, Dropdown } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./Dashboard.css"; 
+import axios from "axios";
+
+import Swal from 'sweetalert2'
+
 
 export default function Dashboard() {
+  const [cars, setCars] = useState([]);
+  useEffect(()=>{
+    getAllCars()
+  },[])
   const [busqueda, setBusqueda] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(null);
+
+
+
+  const getAllCars= async()=>{
+    const vehicles= await axios.get("http://127.0.0.1:4010/carro/getAll")
+    const allCars= vehicles.data.allCars
+   // console.log(allCars)
+   setCars(allCars)
+  }
+
+  const deleteCar = async (id) => {
+    try {
+      await axios.delete("http://127.0.0.1:4010/carro/delete", {
+        data: { carroID: id }
+      });
+      Swal.fire({
+        
+        text: "Eliminado correctamente",
+        icon: "success"
+      });
+      setCars(cars.filter(car => car._id !== id));
+    } catch (error) {
+      console.error("Error deleting car:", error);
+    }
+  };
+
+
+
+
+  const logout = () => {
+    localStorage.clear()
+    window.location.href = "/"
+}
+
+
+
+
+
+const create = () => {
+  localStorage.clear()
+  window.location.href = "/RegisterCar"
+}
+
+
+const filteredCars = cars.filter((car) =>
+  car.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
+  car.year.toString().includes(busqueda) ||
+  car.detalles.toLowerCase().includes(busqueda.toLowerCase())
+);
+
 
   const carros = [
     {
       id: 1,
       nombre: "Toyota Corolla",
-      imagen: "https://th.bing.com/th/id/OIP.sskhamCSgWDF7CwNn38JTgHaEo?rs=1&pid=ImgDetMain",
-      descripcion: "Sedan compacto con gran eficiencia en cuanto su ahorro de combustible",
+      URLimg: "https://th.bing.com/th/id/OIP.sskhamCSgWDF7CwNn38JTgHaEo?rs=1&pid=ImgDetMain",
+      detalles: "Sedan compacto con gran eficiencia en cuanto su ahorro de combustible",
       descripcionExtendida: "El Toyota Corolla 2024 es sinónimo de confiabilidad y eficiencia. Su diseño moderno y tecnología avanzada hacen que cada viaje sea placentero y seguro. Con una excelente economía de combustible y un interior cómodo, es ideal para familias y profesionales que buscan estilo y rendimiento.",
       precio: "$22,500 USD",
-      año: 2024,
+      year: 2024,
     },
 
     {
@@ -69,6 +127,9 @@ export default function Dashboard() {
     }
   ];
 
+
+
+
   return (
     <div className="main_content">
       <nav>
@@ -77,26 +138,24 @@ export default function Dashboard() {
           <Col md={6}>
             <Form.Control
               type="text"
-              placeholder="Busca un carro"
+              placeholder="Busca un carro por nombre, año o detalles"
               value={busqueda}
               onChange={(e) => setBusqueda(e.target.value)}
-            />  <button class="logout">Salir</button>
+            />
           </Col>
-       
+          <Button className="Buttonlogout" onClick={logout}>Salir</Button>
         </Row>
-        
         <Row className="row-cols-1 row-cols-lg-3 g-4">
-          {carros
-            .filter((car) => car.nombre.toLowerCase().includes(busqueda.toLowerCase()))
-            .map((car) => (
+          {filteredCars.length > 0 ? (
+            filteredCars.map((car) => (
               <Col key={car.id}>
                 <Card className="car-card shadow-sm">
-                  <Card.Img variant="top" src={car.imagen} className="car-image" />
+                  <Card.Img variant="top" src={car.URLimg} className="car-image" />
                   <Card.Body>
                     <Card.Title>
-                      {car.nombre} ({car.año})
+                      {car.nombre} ({car.year})
                     </Card.Title>
-                    <Card.Text>{car.descripcion}</Card.Text>
+                    <Card.Text>{car.detalles}</Card.Text>
                     <Card.Text>
                       <strong>{car.precio}</strong>
                     </Card.Text>
@@ -105,15 +164,22 @@ export default function Dashboard() {
                         Detalles
                       </Dropdown.Toggle>
                       <Dropdown.Menu className="p-3">
-                        <Dropdown.ItemText>{car.descripcionExtendida}</Dropdown.ItemText>
+                        <Dropdown.ItemText>{car.detalles}</Dropdown.ItemText>
                       </Dropdown.Menu>
                     </Dropdown>
+                    <Button variant="danger" className="mt-2" onClick={() => deleteCar(car._id)}>
+                      Eliminar
+                    </Button>
                   </Card.Body>
                 </Card>
               </Col>
-            ))}
+            ))
+          ) : (
+            <p className="text-center">No se encontraron resultados</p>
+          )}
         </Row>
       </nav>
+      <Button className="ButtonCreate" onClick={create}>Crear Carro</Button>
     </div>
   );
 }

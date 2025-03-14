@@ -30,7 +30,10 @@ app.get("/:id", obtenerUsuarioPorId)
 app.put("/:id", actualizarUsuario)
 app.delete("/:id", eliminarUsuario)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5e8527f1e05d7ed26f9782265c44f70ecfc82862
 app.post("/api/cars", registrarCarro);
 app.get("/api/cars", TraerTODOSCarros);
 app.put("/api/cars", actualizarCarro);

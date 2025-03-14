@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Importar useNavigate
 import axios from "axios";
 import './RegisterCar.css';
+import Swal from 'sweetalert2'
 
 const RegisterCar = () => {
   const navigate = useNavigate(); // Hook para navegar entre rutas
@@ -24,8 +25,12 @@ const RegisterCar = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/cars", carro);
-      alert(response.data.msg);
+      const response = await axios.post("http://127.0.0.1:4010/api/cars", carro);
+           Swal.fire({
+              
+              text: "Carro registrado correctamente",
+              icon: "success"
+            });
       setCarro({
         nombre: "",
         precio: "",

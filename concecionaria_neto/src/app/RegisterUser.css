@@ -19,17 +19,17 @@ input {
     font-size: 16px;
 }
 
-button {
+.Registro {
     width: 50%;
     padding: 15px;
-    background-color: #003973;
+    background-color: #0079f3;
     color: #fff;
     font-size: 16px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
+  }
 
 .registro-card{
     background: white;

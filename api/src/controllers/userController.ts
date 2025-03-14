@@ -63,9 +63,9 @@ export const loginUsuario = async (req: Request, res: Response): Promise<any> =>
 };
 
 export const login2= async (req:Request, res: Response):Promise<any>=>{
-  const {contrasenia, correo}= req.body
+  const {password, email}= req.body
   try {
-      const UsuarioLogeado = await usersModel.findOne({correo:correo, contrasenia:contrasenia})
+      const UsuarioLogeado = await usersModel.findOne({email:email, password:password})
       
       if(!UsuarioLogeado){
           return res.status(400).json({
